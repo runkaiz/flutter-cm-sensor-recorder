@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.delay76.flutter_cm_sensor_recorder">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+    <application>
+        <service android:name=".ForegroundService">
+            <!--android:exported="false"
+            android:foregroundServiceType="connectedDevice|dataSync" -->
+        </service>
+    </application>
+</manifest>

@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_cm_sensor_recorder (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_cm_sensor_recorder (from `.symlinks/plugins/flutter_cm_sensor_recorder/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_cm_sensor_recorder:
+    :path: ".symlinks/plugins/flutter_cm_sensor_recorder/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  flutter_cm_sensor_recorder: e1d6af0b17d5c9ef734d9eede9d967761ab56212
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.1

@@ -18,6 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await FlutterCmSensorRecorder.platformVersion, '42');
+    expect(await FlutterCmSensorRecorder.isAccelerometerRecordingAvailable, true);
   });
 }

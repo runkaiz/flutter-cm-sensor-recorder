@@ -14,22 +14,24 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  bool _recordingAvailable = false;
+  int _dataPoints = 0;
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    checkRecordingAvailability();
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
+  Future<void> checkRecordingAvailability() async {
+    bool recordingAvailable;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await FlutterCmSensorRecorder.platformVersion;
+      recordingAvailable =
+          await FlutterCmSensorRecorder.isAccelerometerRecordingAvailable;
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      recordingAvailable = false;
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -38,7 +40,7 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
+      _recordingAvailable = recordingAvailable;
     });
   }
 
@@ -47,10 +49,41 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Flutter CM Sensor Recorder'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: Column(
+          children: [
+            Center(
+              child: Text('Recording available: $_recordingAvailable\n'),
+            ),
+            Center(
+              child: Text('Data points: $_dataPoints\n'),
+            ),
+            MaterialButton(
+              onPressed: () async {
+                await FlutterCmSensorRecorder.recordAccelerometer(
+                    duration: Duration(hours: 2));
+              },
+              child: Text('Start recording for 2 hours'),
+            ),
+            MaterialButton(
+              onPressed: () async {
+                await FlutterCmSensorRecorder.stopRecording();
+              },
+              child: Text('Stop recording'),
+            ),
+            MaterialButton(
+              onPressed: () async {
+                final points = await FlutterCmSensorRecorder.accelerometerData(
+                    from: DateTime.now().subtract(Duration(hours: 2)),
+                    to: DateTime.now());
+                setState(() {
+                  _dataPoints = points.length;
+                });
+              },
+              child: Text('Read data from recorder'),
+            )
+          ],
         ),
       ),
     );

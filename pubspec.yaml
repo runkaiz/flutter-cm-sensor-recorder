@@ -1,5 +1,5 @@
 name: flutter_cm_sensor_recorder
-description: A Flutter plugin to access CMSensorRecorder on iOS
+description: A Flutter plugin to access CMSensorRecorder on iOS and Android
 version: 0.0.1
 author:
 homepage:

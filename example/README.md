@@ -1,16 +1,16 @@
-# flutter_cm_sensor_recorder_example
 
-Demonstrates how to use the flutter_cm_sensor_recorder plugin.
 
-## Getting Started
+# :arrow_up: Flutter CM Sensor Recorder
+ This plugin allows to use the CoreMotion Sensor Recorder features of iOS in your Flutter mobile app on both iOS and Android.
 
-This project is a starting point for a Flutter application.
+ Because of the lack of OS-specific support for recording raw accelerometer data in background on Android, the Android implementation uses a Foreground service.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Requesting permissions
+Additionally, you will have to manage the permission request. If you choose to go with permission [permission_handler](https://pub.dev/packages/permission_handler) make sure to follow their installation steps as well.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Units
+The only difference compared to the iOS native implementation lays in the fact that this plugin will give you accelerations in m/s² instead of Apple's G.
+
+## Usage  
+You can check the example for a rather complete implementation and you can always refer the official iOS documentation, this plugin behaves in the same way.

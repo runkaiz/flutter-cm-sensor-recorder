@@ -1,8 +1,7 @@
 name: flutter_cm_sensor_recorder
 description: A Flutter plugin to access CMSensorRecorder on iOS and Android
 version: 0.0.1
-author:
-homepage:
+homepage: https://gitlab.com/sungazer-pub/flutter_radar_io
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

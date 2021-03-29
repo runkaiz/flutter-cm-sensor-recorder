@@ -12,5 +12,8 @@ Additionally, you will have to manage the permission request. If you choose to g
 ## Units
 The only difference compared to the iOS native implementation lays in the fact that this plugin will give you accelerations in m/s² instead of Apple's G.
 
-## Usage  
+## Usage
 You can check the example for a rather complete implementation and you can always refer the official iOS documentation, this plugin behaves in the same way.
+
+## Sponsor
+The initial development of this plugin was sponsored by Growth Constant Inc. who allowed my to publish this as an open source project.

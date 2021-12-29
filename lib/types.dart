@@ -1,16 +1,10 @@
-import 'package:flutter/foundation.dart';
-
 class AccelerometerData {
   final DateTime timeStamp;
   final Acceleration acceleration;
-  AccelerometerData({
-    this.timeStamp,
-    this.acceleration
-});
+  AccelerometerData({required this.timeStamp, required this.acceleration});
   static AccelerometerData fromMap(map) => AccelerometerData(
-    timeStamp: DateTime.parse(map['timestamp']),
-    acceleration: Acceleration.fromMap(map['acceleration'])
-  );
+      timeStamp: DateTime.parse(map['timestamp']),
+      acceleration: Acceleration.fromMap(map['acceleration']));
 
   @override
   String toString() {
@@ -23,15 +17,15 @@ class Acceleration {
   final double y;
   final double z;
   Acceleration({
-    @required this.x,
-    @required this.y,
-    @required this.z,
-});
+    required this.x,
+    required this.y,
+    required this.z,
+  });
   static Acceleration fromMap(map) => Acceleration(
-    x: map['x'],
-    y: map['y'],
-    z: map['z'],
-  );
+        x: map['x'],
+        y: map['y'],
+        z: map['z'],
+      );
 
   @override
   String toString() {

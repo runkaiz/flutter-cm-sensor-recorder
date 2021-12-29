@@ -1,7 +1,5 @@
-
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_cm_sensor_recorder/methods.dart';
 import 'package:flutter_cm_sensor_recorder/types.dart';
@@ -11,15 +9,18 @@ class FlutterCmSensorRecorder {
       const MethodChannel('flutter_cm_sensor_recorder');
 
   static Future<bool> get isAccelerometerRecordingAvailable async {
-    return await _channel.invokeMethod(Methods.isAccelerometerRecordingAvailable.toStringValue());
+    String result = await _channel.invokeMethod(
+        Methods.isAccelerometerRecordingAvailable.toStringValue());
+
+    return result.parseBool();
   }
 
-  static Future<void> recordAccelerometer({
-    @required Duration duration,
-    String notificationText = 'In background',
-    String notificationTitle = 'Recording accelerometer'
-  }) async {
-    return await _channel.invokeMethod(Methods.recordAccelerometer.toStringValue(), {
+  static Future<void> recordAccelerometer(
+      {required Duration duration,
+      String notificationText = 'In background',
+      String notificationTitle = 'Recording accelerometer'}) async {
+    return await _channel
+        .invokeMethod(Methods.recordAccelerometer.toStringValue(), {
       'duration': duration.inSeconds,
       'notification_text': notificationText,
       'notification_title': notificationTitle
@@ -30,15 +31,16 @@ class FlutterCmSensorRecorder {
     return await _channel.invokeMethod(Methods.stopRecording.toStringValue());
   }
 
-  static Future<Iterable<AccelerometerData>> accelerometerData({
-    @required DateTime from,
-    @required DateTime to
-  }) async {
+  static Future<Iterable<AccelerometerData>> accelerometerData(
+      {required DateTime from, required DateTime to}) async {
     final Map<String, String> params = {
       'from': from.toUtc().toIso8601String(),
       'to': to.toUtc().toIso8601String()
     };
-    final response = await _channel.invokeMethod<List<dynamic>>(Methods.accelerometerData.toStringValue(), params);
-    return response.length > 0 ? response.map((e) => AccelerometerData.fromMap(e)) : [];
+    final response = await _channel.invokeMethod<List<dynamic>>(
+        Methods.accelerometerData.toStringValue(), params);
+    return response!.length > 0
+        ? response.map((e) => AccelerometerData.fromMap(e))
+        : [];
   }
 }

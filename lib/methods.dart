@@ -8,5 +8,14 @@ enum Methods {
 }
 
 extension Tostring on Methods {
-  toStringValue() => describeEnum(this);
+  String toStringValue() {
+    print(describeEnum(this));
+    return describeEnum(this);
+  }
+}
+
+extension BoolParsing on String {
+  bool parseBool() {
+    return this.toLowerCase() == 'true';
+  }
 }
